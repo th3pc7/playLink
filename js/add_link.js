@@ -3,17 +3,6 @@ MainProg.config.Page_modules["add_link"] = new PageJS(MainProg, function(Main){
   Main.on("submit","#form_add_link",add_link);
 },function(Main){
   // this function run on after open this page.
-  $.post("./quest/action/",{ action: "give_me_link" },function(data){
-    if(data==="pass"){
-      alert("สำเร็จ");
-      ref();
-    }
-    else{
-      alert(data);
-    }
-  }).fail(function(){
-    alert("เกิดข้อผิดพลาด !!!");
-  });
 },function(Main){
   // this function run on befor close this page.
 });
