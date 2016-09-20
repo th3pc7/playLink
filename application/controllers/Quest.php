@@ -39,6 +39,9 @@ class Quest extends CI_Controller {
         ));
         echo 'pass';
         break;
+      case 'give_me_link':
+        $this->give_me_link();
+        break;
 			default:
 				die();
 		}
@@ -48,10 +51,21 @@ class Quest extends CI_Controller {
     $this->load->model('link_model');
     $this->page->load_page('add_link_page', array(
       'page_data' => array(
-        'title' => 'Login',
+        'title' => 'kan-eng.com | add_link',
         'links_data' => $this->link_model->load_link('*', null)
       )
     ));
+  }
+
+  public function give_me_link(){
+    $this->load->model('link_model');
+    $dataLink = $this->link_model->load_link('*', null);
+    $str = 'var arr_link = [];';
+    foreach($dataLink as $link){
+      if($link['status']!=='active'){ continue; }
+      $str = $str.'arr_link.push({name:"'.$link['name'].'", link:"'.$link['link'].'"});';
+    }
+    echo $str;
   }
 
   private function add_link(){
