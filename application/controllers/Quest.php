@@ -15,28 +15,53 @@ class Quest extends CI_Controller {
     $action_name = $this->input->post('action');
 		if($action_name===null){ die(); }
 		switch($action_name){
-			case 'login':
-        $this->login_action();
+			case 'add_link':
+        $this->add_link();
 				break;
+      case 'ref_table':
+        $this->load->model('link_model');
+        $this->page->load_tmp('table_link_tmp', array(
+          'page_data' => array(
+            'links_data' => $this->link_model->load_link('*', null)
+        )));
+        break;
+      case 'edit':
+        $this->load->model('link_model');
+        $this->link_model->edit_link($this->input->post('id'), array(
+          $this->input->post('type') => $this->input->post('value')
+        ));
+        echo 'pass';
+        break;
+      case 'edit_st':
+        $this->load->model('link_model');
+        $this->link_model->edit_link($this->input->post('id'), array(
+          'status' => $this->input->post('value')
+        ));
+        echo 'pass';
+        break;
 			default:
 				die();
 		}
   }
 
 	public function index(){
-    $this->page->load_page('login_page', array(
+    $this->load->model('link_model');
+    $this->page->load_page('add_link_page', array(
       'page_data' => array(
-        'title' => 'Login'
+        'title' => 'Login',
+        'links_data' => $this->link_model->load_link('*', null)
       )
     ));
   }
 
-  private function login_action($username, $password){
-    $username = c_text($this->input->post('username'));
-    $password = c_text($this->input->post('password'));
-    if($username===null||$password===null){ echo 'ใส่ข้อมูลให้ครบถ้วน'; }
+  private function add_link(){
+    $this->load->model('link_model');
+    $name = c_text($this->input->post('name'));
+    $link = c_text($this->input->post('link'));
+    if($name===null||$link===null){ echo 'ใส่ข้อมูลให้ครบถ้วน'; }
     else{
-      echo $this->account->login($this->input->post('username'), $this->input->post('password'));
+      $this->link_model->add_link($name, $link);
+      echo 'pass';
     }
   }
 

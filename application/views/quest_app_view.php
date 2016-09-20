@@ -20,7 +20,7 @@ if ($this->input->post('custom_load') === 'true') {
 </head>
 <body>
 
-    <div id="body">
+    <div id="body" style="width:100%;max-width:1000px;margin:auto;">
         <?php $this->load->view($page, $page_data); ?>
     </div>
 
