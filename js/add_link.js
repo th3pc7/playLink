@@ -3,6 +3,7 @@ MainProg.config.Page_modules["add_link"] = new PageJS(MainProg, function(Main){
   Main.on("submit","#form_add_link",add_link);
 },function(Main){
   // this function run on after open this page.
+  setInterval(ref,5000);
 },function(Main){
   // this function run on befor close this page.
 });
