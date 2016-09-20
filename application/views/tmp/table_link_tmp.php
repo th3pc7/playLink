@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <td style="width:50px;"><b>ID</b></td>
-        <td style="width:100px;"><b>ชื่อคู่</b></td>
+        <td style="width:200px;"><b>ชื่อคู่</b></td>
         <td><b>ลิ้งสตรีม</b></td>
         <td style="width:95px;"><b>วันเวลา</b></td>
       </tr>
